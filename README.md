@@ -66,3 +66,7 @@ A. Grasshopper (formerly Grasshopper v1.0)
 	Height: 744 meters
 
 B. Falcon 9 Reusable Development Vehicle (F9R Dev, formerly Grasshopper v1.1)
+
+	Flight 1 - April 17, 2014
+	Duration: 58 seconds
+	Height: 250 meters
