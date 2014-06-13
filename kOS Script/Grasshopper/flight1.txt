@@ -1,0 +1,19 @@
+Set t to 0.
+
+Lock throttle to t.
+Lock steering to UP + r(0,0,180).
+Set padheight to alt:radar.
+Set starttime to missiontime.
+Lock stagetime to missiontime - starttime.
+Stage.
+
+Until alt:radar - padheight > 0.15 {
+	Set t to t + 0.02.
+}.
+
+Until stagetime > 3 {
+	If t > 0 {
+		Set t to t - 0.02.
+	}.
+	Print "time: " + stagetime + "altitude: " + (alt:radar - padheight).
+}.
