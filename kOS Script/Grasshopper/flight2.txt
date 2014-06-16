@@ -1,3 +1,5 @@
+//This is really inconsistent, probaby underpowered, and proof that the next flight must incorporate a PID controller
+
 Set t to 0.
 Lock throttle to t.
 Lock steering to UP + r(0,0,180).
@@ -14,17 +16,17 @@ Print "Blastoff!".
 Set starttime to missiontime.
 Lock stagetime to missiontime - starttime.
 
-Until alt:radar - padheight > 0.06 {
-	Set t to t + 0.02.
+Until alt:radar - padheight > 0.07 {
+	Set t to t + 0.005.
 }.
 Set maxheight to alt:radar.
 
-Until stagetime > 3 {
+Until stagetime > 8 {
 	If alt:radar > maxheight{
 		Set maxheight to alt:radar.
 	}.
 	If t > 0 {
-		Set t to t - 0.01.
+		Set t to t - 0.001.
 	}.
 }.
 Set maxheight to maxheight - padheight.
