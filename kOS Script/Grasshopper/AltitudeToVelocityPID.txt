@@ -8,10 +8,11 @@ If (integralAV * KiAV) < outMinAV{
 	Set integralAV to outMinAV / KiAV.
 }.
 Set derivativeAV to (alt - previousA) / dt.
+Set previousA to alt.
 Set outAV to ((KpAV * errorAV) + (KiAV * integralAV) + (KdAV * derivativeAV)).
 If (outAV > outMaxAV){
 	Set outAV to outMaxAV.
 }.
 If (outAV < outMinAV){
-	Set out to outMinAV.
+	Set outAV to outMinAV.
 }.

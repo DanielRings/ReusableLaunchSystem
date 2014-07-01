@@ -8,6 +8,7 @@ If (integralVT * KiVT) < outMinVT{
 	Set integralVT to outMinVT / KiVT.
 }.
 Set derivativeVT to (verticalspeed - previousV) / dt.
+Set previousV to verticalspeed.
 Set outVT to ((KpVT * errorVT) + (KiVT * integralVT) + (KdVT * derivativeVT)).
 If (outVT > outMaxVT){
 	Set outVT to outMaxVT.
