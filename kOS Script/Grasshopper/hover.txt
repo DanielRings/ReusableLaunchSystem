@@ -1,0 +1,39 @@
+Declare parameter desiredAltitude.
+Set integral to 0.
+Set Kp to 0.0100.
+Set Ki to 0.0020.
+Set Kd to 0.0200.
+Set out to 0.
+Set outMax to 1.
+Set outMin to 0.
+Set dt to 0.1.
+Set count to 0.
+Set previousError to desiredAltitude - alt:radar.
+Until 0 {
+	Set error to desiredAltitude - alt:radar.
+	Set integral to integral + (error * dt).
+	If (integral * Ki ) > outMax{
+		Set integral to outMax / Ki.
+	}.
+	If (integral * Ki) < outMin{
+		Set integral to outMin / Ki.
+	}.
+	Set derivative to (error - previousError) / dt.
+	If (mod(count, 100) = 0){
+		Print "Error Term:      " + (Kp * error).
+		Print "Integral Term:   " + (Ki * integral).
+		Print "Derivative Term: " + (Kd * derivative).
+		Print "---------------".
+	}.
+	Set out to ((Kp * error) + (Ki * integral) + (Kd * derivative)).
+	If (out > outMax){
+		Set out to outMax.
+	}.
+	If (out < outMin){
+		Set out to outMin.
+	}.
+	Lock throttle to out.
+	Set previousError to error.
+	Wait 0.1.
+	Set count to count + 1.
+}.

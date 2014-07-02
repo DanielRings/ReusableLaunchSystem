@@ -1,0 +1,86 @@
+Lock throttle to 0.
+Lock steering to UP + r(0,0,180).
+Set padheight to alt:radar.
+Set desiredAltitude to 0.
+Set integral to 0.
+Set Kp to 0.0100.
+Set Ki to 0.0020.
+Set Kd to 0.0200.
+Set out to 0.
+Set outMax to 1.
+Set outMin to 0.
+Set dt to 0.1.
+Set maxheight to alt:radar.
+Stage.
+Print 3.
+Wait 1.
+Print 2.
+Wait 1.
+Print 1.
+Wait 1.
+Print "Blastoff!".
+Set starttime to missiontime.
+Lock stagetime to missiontime - starttime.
+Set desiredAltitude to 40 + padheight.
+Set previousError to desiredAltitude - alt:radar.
+Until alt:radar >= 40 + padheight {
+	Set error to desiredAltitude - alt:radar.
+	Set integral to integral + (error * dt).
+	If (integral * Ki ) > outMax{
+		Set integral to outMax / Ki.
+	}.
+	If (integral * Ki) < outMin{
+		Set integral to outMin / Ki.
+	}.
+	Set derivative to (error - previousError) / dt.
+	Set out to ((Kp * error) + (Ki * integral) + (Kd * derivative)).
+	If (out > outMax){
+		Set out to outMax.
+	}.
+	If (out < outMin){
+		Set out to outMin.
+	}.
+	Lock throttle to out.
+	Set previousError to error.
+	If alt:radar > maxheight{
+		Set maxheight to alt:radar.
+	}.
+	Wait 0.1.
+}.
+
+Set desiredAltitude to 35 + padheight.
+Set previousError to desiredAltitude - alt:radar.
+Until alt:radar <= 0.2 + padheight{
+	Set error to desiredAltitude - alt:radar.
+	Set integral to integral + (error * dt).
+	If (integral * Ki ) > outMax{
+		Set integral to outMax / Ki.
+	}.
+	If (integral * Ki) < outMin{
+		Set integral to outMin / Ki.
+	}.
+	Set derivative to (error - previousError) / dt.
+	Set out to ((Kp * error) + (Ki * integral) + (Kd * derivative)).
+	If (out > outMax){
+		Set out to outMax.
+	}.
+	If (out < outMin){
+		Set out to outMin.
+	}.
+	Lock throttle to out.
+	Set previousError to error.
+	If alt:radar > maxheight{
+		Set maxheight to alt:radar.
+	}.
+	Wait 0.1.
+	If (alt:radar - 5 <= desiredAltitude + padheight) {
+		Set desiredAltitude to desiredAltitude - 5.
+		Set previousError to desiredAltitude - alt:radar.
+	}.
+	If (desiredAltitude < padheight){
+		Set desiredAltidude to padheight.
+	}
+}.
+Set maxheight to maxheight - padheight.
+Print "Duration: " + stagetime.
+Print "Altitude: " + maxheight.
