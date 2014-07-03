@@ -3,9 +3,9 @@ A model of SpaceX's Grasshopper Program in the Kerbal Space Program, using the k
 
 *****CONTENTS*****
 
-I.	INTRODUCTION
+I. INTRODUCTION
 
-II.	SOFTWARE
+II. SOFTWARE
 	A.	Kerbal Space Program (KSP)
 	B.	KSP Mods
 		i.		kOS
@@ -19,7 +19,10 @@ III. GRASSHOPPER PROGRAM SUMMARY
 IV. MODEL PROGRAM
 
 V. OTHER PROJECTS OF NOTE
-	A.	
+	A.	BahamutoD
+	B.	SnakeSign
+	C.	LazarusLuan
+
 
 *****I. INTRODUCTION*****
 
@@ -30,6 +33,7 @@ About thirty minutes after playing around with kOS, I thought it would be really
 In the end, I decided to replicate SpaceX's Grasshopper program. Kerbal Space Program taught me more about orbital mechanics in half an hour than I had ever learned in any class. (And while I'm not a physics, aero, or astro major, I didn't shy away from learning about that kind of stuff in school.) I was hoping that by modeling the Grasshopper program, I would learn similarly about AI, control theory, and other applied programming concepts.
 
 I certainly did learn a lot and I've marked the progress of my discoveries at each flight in my project.
+
 
 *****II. SOFTWARE*****
 
@@ -47,25 +51,34 @@ B. Mods
 
 			kOS is a scriptable autopilot system. This is the mod that enables autonomous operation of the rocket. A program is loaded into the kOS terminal on a custom ship part and the rocket is entirely controlled via that program once it is executed.
 
+			http://www.curse.com/ksp-mods/kerbal/220265-kos-scriptable-autopilot-system
+
 
 	ii. 	Ferram Aerospace Research
 
 			FAR is a mod that changes how the aerodynamics work in KSP. The stock KSP aerodynamic model (especially calculation of drag) is really unrealistic. FAR implements a much more realistic model, although it has its share of side effects. Notably, my planes always fall apart way too easily now. It's not really important for what I was doing and I didn't take the time to fix it, but I've included it because it was in use during this project.
+
+			https://github.com/ferram4/Ferram-Aerospace-Research/releases
 
 
 	iii.	Deadly Reentry
 
 			What's the point of all those red hot reentry effects if there's no danger? The Deadly Reentry mod makes parts explode if they exceed their heat tolerance. This one's also of neglegible effect on the project.
 
+			https://github.com/NathanKell/DeadlyReentry/releases
+
 
 	iv.		KW Rocketry
 
 			This mod adds some parts to KSP. I originally got this one because I was looking for fairings. I ended up not using the fairings, but using the fuel tanks and engines that KW Rocketry includes.
 
+			http://www.curse.com/ksp-mods/kerbal/220894-kw-rocketry
+
 
 	v.		Vehicles
 
-			These aren't mods, but I've included the vehicles I constructed to use during this project.
+			It's not a mod, but I've included the Grasshopper rocket I built in KSP
+
 
 *****III. GRASSHOPPER PROGRAM SUMMARY*****
 
@@ -102,7 +115,8 @@ B. Mods
 	Duration: 78 seconds
 	Altitude: 744 meters
 
-*****III. GRASSHOPPER PROGRAM SUMMARY*****
+
+*****IV. MODEL PROGRAM*****
 
 
 
