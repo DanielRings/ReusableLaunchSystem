@@ -1,0 +1,52 @@
+Copy AltitudeToVelocityPID from 0.
+Copy VelocityToThrustPID from 0.
+Lock throttle to 0.
+Lock steering to UP + r(0,0,180).
+Set padheight to alt:radar.
+Lock alt to alt:radar - padheight.
+Set maxheight to alt.
+Set KpAV to 0.200.
+Set KiAV to 0.000.
+Set KdAV to 0.050.
+Set integralAV to 0.
+Set outMaxAV to 10.
+Set outMinAV to -10.
+Set KpVT to 0.100.
+Set KiVT to 0.200.
+Set KdVT to 0.005.
+Set integralVT to 0.
+Set outMaxVT to 1.
+Set outMinVT to 0.1.
+Stage.
+Print 3.
+Wait 1.
+Print 2.
+Wait 1.
+Print 1.
+Wait 1.
+Print "Blastoff!".
+Set starttime to missiontime.
+Lock stagetime to missiontime - starttime.
+Set dt to 0.1.
+Set desiredAltitude to 257.
+Set previousErrorAV to 0.
+Set previousErrorVT to 0.
+Until stagetime > 10 and alt < 0.5 {
+	Set errorAV to desiredAltitude - alt.
+	Run AltitudeToVelocityPID(desiredAltitude).
+	Set desiredVelocity to outAV.
+	Set error to desiredVelocity - verticalspeed.
+	Run VelocityToThrustPID(desiredVelocity).
+	Lock throttle to outVT.
+	Wait dt.
+	Set previousErrorAV to errorAV.
+	Set previousErrorVT to errorVT.
+	If alt >= 250 {
+		Set desiredAltitude to -7.
+	}.
+	If alt > maxheight{
+		Set maxheight to alt.
+	}.
+}.
+Print "Duration: " + stagetime.
+Print "Altitude: " + maxheight.

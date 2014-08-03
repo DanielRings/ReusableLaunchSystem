@@ -1,0 +1,110 @@
+Copy AltitudeToVelocityPID from 0.
+Copy VelocityToThrustPID from 0.
+Copy LatitudeToVelocityPID from 0.
+Copy LongitudeToVelocityPID from 0.
+Copy LatVelocityToPitchPID from 0.
+Copy LngVelocityToYawPID from 0.
+Lock throttle to 0.
+Set steer to UP + r(0,0,180).
+Set padheight to alt:radar.
+Lock alt to alt:radar - padheight.
+Set pad to latlng(latitude,longitude).
+Set coordinates to pad.
+Set maxheight to alt.
+Set KpAV to 0.150.
+Set KiAV to 0.000.
+Set KdAV to 0.020.
+Set integralAV to 0.
+Set outMaxAV to 40.
+Set outMinAV to -40.
+Set KpVT to 0.050.
+Set KiVT to 0.100.
+Set KdVT to 0.005.
+Set integralVT to 0.
+Set outMaxVT to 1.
+Set outMinVT to 0.01.
+Set KpLatV to 1.00.
+Set KiLatV to 0.00.
+Set KdLatV to 9.00.
+Set integralLatV to 0.
+Set outMaxLatV to 0.001.
+Set outMinLatV to -0.001.
+Set KpVP to 500.
+Set KiVP to 100.
+Set KdVP to 200.
+Set integralVP to 0.
+Set outMaxVP to .1.
+Set outMinVP to -.1.
+Set KpLngV to 1.00.
+Set KiLngV to 0.00.
+Set KdLngV to 9.00.
+Set integralLngV to 0.
+Set outMaxLngV to 0.0005.
+Set outMinLngV to -0.0005.
+Set KpVY to 500.
+Set KiVY to 100.
+Set KdVY to 200.
+Set integralVY to 0.
+Set outMaxVY to .1.
+Set outMinVY to -.1.
+Stage.
+Print 3.
+Wait 1.
+Print 2.
+Wait 1.
+Print 1.
+Wait 1.
+Print "Blastoff!".
+Lock steering to steer.
+Set starttime to missiontime.
+Lock stagetime to missiontime - starttime.
+Set desiredAltitude to 744.
+Set targetAltitude to 0.
+Set ascend to 1.
+Set tickTime to 0.05.
+Set dt to tickTime.
+Set previousA to 0.
+Set previousV to 0.
+Set previousLat to latitude.
+Set previousLng to longitude.
+Set previousVelLat to 0.
+Set previousVelLng to 0.
+Until stagetime > 10 and alt < 1 {
+	Set currentTime to missiontime.
+	Set velLat to (latitude - previousLat)/dt.
+	Set velLng to (longitude - previousLng)/dt.
+	If ascend = 1 and targetAltitude < (desiredAltitude + 7) {
+		Set targetAltitude to min(desiredAltitude + 7, targetAltitude + 50).
+	}.
+	If ascend = 0 and targetAltitude > (desiredAltitude - 5) {
+		Set targetAltitude to max(desiredAltitude - 5, targetAltitude - 50).
+	}.
+	Run AltitudeToVelocityPID(targetAltitude).
+	Set desiredVelocity to outAV.
+	Run VelocityToThrustPID(desiredVelocity).
+	Lock throttle to outVT.
+	Run LatitudeToVelocityPID.
+	Run LongitudeToVelocityPID.
+	Set desiredLatVelocity to outLatV.
+	Set desiredLngVelocity to outLngV.
+	Run LatVelocityToPitchPID(desiredLatVelocity).
+	Run LngVelocityToYawPID(desiredLngVelocity).
+	Set steer to UP + r(outVP, outVY, 180).
+	Set previousA to alt.
+	Set previousV to verticalspeed.
+	Set previousVelLat to velLat.
+	Set previousVelLng to velLng.
+	Wait tickTime.
+	If missiontime > 0{
+		Set dt to missiontime - currentTime.
+	}
+	If alt >= desiredAltitude {
+		Set desiredAltitude to 0.
+		Set ascend to 0.
+	}
+	If alt > maxheight{
+		Set maxheight to alt.
+	}.
+}.
+Print "Duration: " + stagetime.
+Print "Altitude: " + maxheight.

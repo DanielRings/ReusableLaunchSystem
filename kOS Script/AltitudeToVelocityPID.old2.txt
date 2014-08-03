@@ -1,0 +1,17 @@
+Declare parameter desiredAltitude.
+Set errorAV to desiredAltitude - alt.
+Set integralAV to integralAV + (errorAV * dt).
+If (integralAV * KiAV ) > outMaxAV{
+	Set integralAV to outMaxAV / KiAV.
+}.
+If (integralAV * KiAV) < outMinAV{
+	Set integralAV to outMinAV / KiAV.
+}.
+Set derivativeAV to (errorAV - previousErrorAV) / dt.
+Set outAV to ((KpAV * errorAV) + (KiAV * integralAV) + (KdAV * derivativeAV)).
+If (outAV > outMaxAV){
+	Set outAV to outMaxAV.
+}.
+If (outAV < outMinAV){
+	Set out to outMinAV.
+}.

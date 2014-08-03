@@ -1,0 +1,85 @@
+Copy VelocityPID from 0.
+Lock throttle to 0.
+Lock steering to UP + r(0,0,180).
+Set padheight to alt:radar.
+Lock alt to alt:radar - padheight.
+Set maxheight to alt.
+Set Kp to 0.100.
+Set Ki to 0.200.
+Set Kd to 0.005.
+Set integral to 0.
+Set outMax to 1.
+Set outMin to 0.
+Stage.
+Print 3.
+Wait 1.
+Print 2.
+Wait 1.
+Print 1.
+Wait 1.
+Print "Blastoff!".
+Set starttime to missiontime.
+Lock stagetime to missiontime - starttime.
+Set dt to 0.1.
+Set desiredVelocity to 3.
+Set previousError to desiredVelocity - verticalspeed.
+Until alt > 5{
+	Set error to desiredVelocity - verticalspeed.
+	Run VelocityPID(desiredVelocity).
+	Lock throttle to out.
+	Wait dt.
+	Set previousError to error.
+}.
+Set desiredVelocity to 6.
+Set previousError to desiredVelocity - verticalspeed.
+Until alt > 70{
+	Set error to desiredVelocity - verticalspeed.
+	Run VelocityPID(desiredVelocity).
+	Lock throttle to out.
+	Wait dt.
+	Set previousError to error.
+}.
+Set desiredVelocity to 3.
+Set previousError to desiredVelocity - verticalspeed.
+Until alt >= 80{
+	If alt > maxheight{
+		Set maxheight to alt.
+	}.
+	Set error to desiredVelocity - verticalspeed.
+	Run VelocityPID(desiredVelocity).
+	Lock throttle to out.
+	Wait dt.
+	Set previousError to error.
+}.
+Set desiredVelocity to -7.
+Set previousError to desiredVelocity - verticalspeed.
+Until alt < 20{
+	If alt > maxheight{
+		Set maxheight to alt.
+	}.
+	Set error to desiredVelocity - verticalspeed.
+	Run VelocityPID(desiredVelocity).
+	Lock throttle to out.
+	Wait dt.
+	Set previousError to error.
+}.
+Set desiredVelocity to -5.
+Set previousError to desiredVelocity - verticalspeed.
+Until alt < 5 {
+	Set error to desiredVelocity - verticalspeed.
+	Run VelocityPID(desiredVelocity).
+	Lock throttle to out.
+	Wait dt.
+	Set previousError to error.
+}.
+Set desiredVelocity to -1.
+Set previousError to desiredVelocity - verticalspeed.
+Until alt < 0.5{
+	Set error to desiredVelocity - verticalspeed.
+	Run VelocityPID(desiredVelocity).
+	Lock throttle to out.
+	Wait dt.
+	Set previousError to error.
+}.
+Print "Duration: " + stagetime.
+Print "Altitude: " + maxheight.
