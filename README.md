@@ -21,6 +21,7 @@ A model of SpaceX's Grasshopper Program in the Kerbal Space Program, using the k
   *	SnakeSign
   *	LazarusLuan
 
+<hr/>
 
 ####I. INTRODUCTION####
 
@@ -58,75 +59,75 @@ I certainly did learn a lot and I've marked the progress of my discoveries at ea
 
 ####III. GRASSHOPPER PROGRAM SUMMARY####
 
-  Flight 1 - September 21, 2012
-  Duration: 3 seconds
-  Altitude: ~2.5 meters
+  Flight 1 - September 21, 2012  
+  Duration: 3 seconds  
+  Altitude: ~2.5 meters  
 
-  Flight 2 - November 1, 2012
-  Duration: 8 seconds
-  Altitude: ~5.4 meters
+  Flight 2 - November 1, 2012  
+  Duration: 8 seconds  
+  Altitude: ~5.4 meters  
 
-  Flight 3 - December 17, 2012
-  Duration: 29 seconds
-  Altitude: 40 meters
+  Flight 3 - December 17, 2012  
+  Duration: 29 seconds  
+  Altitude: 40 meters  
 
-  Flight 4 - March 7, 2013
-  Duration: 34 seconds
-  Altitude: 80 meters
+  Flight 4 - March 7, 2013  
+  Duration: 34 seconds  
+  Altitude: 80 meters  
 
-  Flight 5 - April 19, 2013
-  Duration: 58 seconds
-  Altitude: 250 meters
+  Flight 5 - April 19, 2013  
+  Duration: 58 seconds  
+  Altitude: 250 meters  
 
-  Flight 6 - June 14, 2013
-  Duration: 67 seconds
-  Altitude: 325 meters
+  Flight 6 - June 14, 2013  
+  Duration: 67 seconds  
+  Altitude: 325 meters  
 
-  Flight 7 - August 13, 2013
-  Duration: 60 seconds
-  Altitude: 250 meters
-  Lateral Diversion: 100 meters
+  Flight 7 - August 13, 2013  
+  Duration: 60 seconds  
+  Altitude: 250 meters  
+  Lateral Diversion: 100 meters  
 
-  Flight 8 - October 7, 2013
-  Duration: 78 seconds
-  Altitude: 744 meters
+  Flight 8 - October 7, 2013  
+  Duration: 78 seconds  
+  Altitude: 744 meters  
 
 
 ####IV. MODEL PROGRAM####
 
-    Flight 1
-    Duration: 3.02 seconds
-    Altitude: 2.82 meters
+  Flight 1  
+  Duration: 3.02 seconds  
+  Altitude: 2.82 meters  
 
-    Flight 2
-    Duration: 8.02 seconds
-    Altitude: 5.75 meters
+  Flight 2  
+  Duration: 8.02 seconds  
+  Altitude: 5.75 meters  
 
-    Flight 3
-    Duration: 29.34 seconds
-    Altitude: 40.03 meters
+  Flight 3  
+  Duration: 29.34 seconds  
+  Altitude: 40.03 meters  
 
-    Flight 4
-    Duration: 33.94 seconds
-    Altitude: 80.92 meters
+  Flight 4  
+  Duration: 33.94 seconds  
+  Altitude: 80.92 meters  
 
-    Flight 5
-    Duration: 57.88 seconds
-    Altitude: 250.47 meters
+  Flight 5  
+  Duration: 57.88 seconds  
+  Altitude: 250.47 meters  
 
-    Flight 6
-    Duration: 66.82 seconds
-    Altitude: 325.01 meters
+  Flight 6  
+  Duration: 66.82 seconds  
+  Altitude: 325.01 meters  
 
-    Flight 7
-    Duration: 61.50 seconds
-    Altitude: 250.07 meters
-    Lateral Diversion: 99.37 meters
-    Landing Distance from Launch Position: 0.398 meters
+  Flight 7  
+  Duration: 61.50 seconds  
+  Altitude: 250.07 meters  
+  Lateral Diversion: 99.37 meters  
+  Landing Distance from Launch Position: 0.398 meters  
 
-    Flight 8
-    Duration: 78.04 seconds
-    Altitude: 744.21 meters
+  Flight 8  
+  Duration: 78.04 seconds  
+  Altitude: 744.21 meters  
 
 
 ####V. OTHER PROJECTS OF NOTE####
