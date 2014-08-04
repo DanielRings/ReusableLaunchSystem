@@ -99,13 +99,19 @@ I certainly did learn a lot and I've marked the progress of my discoveries at ea
   Duration: 3.02 seconds  
   Altitude: 2.82 meters  
 
+  Notes: The code for my first flight was pretty crude. The basic idea was to increase the thrust until there was a detectable liftoff, decrease the thrust for the rest of the flight, and cut the throttle when the target mission time had been reached. I knew it was an inconsistent approach and I intended to fix it after I had written the more advanced flights. But because my programs became incrementally more sophisticated, I decided to not rewrite my early flights and instead keep their original form to showcase the learning process I went through.
+
   Flight 2  
   Duration: 8.02 seconds  
   Altitude: 5.75 meters  
 
+  Notes: The second flight was so inconsistent that I spent more time tweaking this program than any other except for the seventh flight (the lateral diversion one). Similar in structure to the first flight, but with dramatically higher error, this program sometimes shoots 15 meters into the air and other times doesn't lift off the pad. Part of the inconsistency stems from KSP's inconsistency in launch conditions - but the real world isn't consistent either. This program proves the need for a different approach.
+
   Flight 3  
   Duration: 29.34 seconds  
   Altitude: 40.03 meters  
+
+  Notes: It was during this program that I discovered what PID controllers were. This flight was a breeze after I implemented one. Thrust is obviously the output of this PID, and I decided to use altitude as my input. Although I didn't know what it was called at the time, I implemented a linear setpoint ramping on the descent. This led to small, repeated bursts of thrust as the rocket comes down. I didn't want my flights to sound like V-1s, so I looked for a way to smooth out the thrust in the next flight.
 
   Flight 4  
   Duration: 33.94 seconds  

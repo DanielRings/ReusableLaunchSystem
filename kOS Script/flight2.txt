@@ -1,5 +1,3 @@
-//This is really inconsistent, probaby underpowered, and proof that the next flight must incorporate a PID controller
-
 Set t to 0.
 Lock throttle to t.
 Lock steering to UP + r(0,0,180).
