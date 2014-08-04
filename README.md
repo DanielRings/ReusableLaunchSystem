@@ -22,6 +22,8 @@ A model of SpaceX's Grasshopper Program in the Kerbal Space Program, using the k
   *	LazarusLuan
 
 
+
+
 ####I. INTRODUCTION####
 
 I started playing KSP about two months ago. After an entire night on the demo version, and the following weekend on the full version, I started to look into the available mods. I was looking for an autopilot mod from the beginning because I wanted a less time-consuming way to transfer orbits than to sit at the computer while my nuclear powered engines slowly burned in the same direction for fifteen minutes. I encountered MechJeb, but the automation was too much of a black box. I didn't want an autopilot that did the thinking for me, I wanted to tell the autopilot how to think, and then have it repeat what I told it as many times as I wanted. I then ran into kOS, where the user can write scripts for the autopilot to run. The syntax is meant to be accessible for non-programmers as well, but it is good enough to get the job done.
@@ -47,93 +49,93 @@ I certainly did learn a lot and I've marked the progress of my discoveries at ea
 
 	-	kOS
 
-    kOS is a scriptable autopilot system. This is the mod that enables autonomous operation of the rocket. A program is loaded into the kOS terminal on a custom ship part and the rocket is entirely controlled via that program once it is executed.
+      kOS is a scriptable autopilot system. This is the mod that enables autonomous operation of the rocket. A program is loaded into the kOS terminal on a custom ship part and the rocket is entirely controlled via that program once it is executed.
 
-    http://www.curse.com/ksp-mods/kerbal/220265-kos-scriptable-autopilot-system
+      http://www.curse.com/ksp-mods/kerbal/220265-kos-scriptable-autopilot-system
 
 	-	KW Rocketry
 
-    This mod adds some parts to KSP. I originally got this one because I was looking for fairings. I ended up not using the fairings, but using the fuel tanks and engines that KW Rocketry includes.
+      This mod adds some parts to KSP. I originally got this one because I was looking for fairings. I ended up not using the fairings, but using the fuel tanks and engines that KW Rocketry includes.
 
-    http://www.curse.com/ksp-mods/kerbal/220894-kw-rocketry
+      http://www.curse.com/ksp-mods/kerbal/220894-kw-rocketry
 
 
 	-	Vehicle
 
-    It's not a mod, but I've included the Grasshopper rocket I built in KSP
+      It's not a mod, but I've included the Grasshopper rocket I built in KSP
 
 
 ####III. GRASSHOPPER PROGRAM SUMMARY####
 
-Flight 1 - September 21, 2012
-Duration: 3 seconds
-Altitude: ~2.5 meters
+  Flight 1 - September 21, 2012
+  Duration: 3 seconds
+  Altitude: ~2.5 meters
 
-Flight 2 - November 1, 2012
-Duration: 8 seconds
-Altitude: ~5.4 meters
+  Flight 2 - November 1, 2012
+  Duration: 8 seconds
+  Altitude: ~5.4 meters
 
-Flight 3 - December 17, 2012
-Duration: 29 seconds
-Altitude: 40 meters
+  Flight 3 - December 17, 2012
+  Duration: 29 seconds
+  Altitude: 40 meters
 
-Flight 4 - March 7, 2013
-Duration: 34 seconds
-Altitude: 80 meters
+  Flight 4 - March 7, 2013
+  Duration: 34 seconds
+  Altitude: 80 meters
 
-Flight 5 - April 19, 2013
-Duration: 58 seconds
-Altitude: 250 meters
+  Flight 5 - April 19, 2013
+  Duration: 58 seconds
+  Altitude: 250 meters
 
-Flight 6 - June 14, 2013
-Duration: 67 seconds
-Altitude: 325 meters
+  Flight 6 - June 14, 2013
+  Duration: 67 seconds
+  Altitude: 325 meters
 
-Flight 7 - August 13, 2013
-Duration: 60 seconds
-Altitude: 250 meters
-Lateral Diversion: 100 meters
+  Flight 7 - August 13, 2013
+  Duration: 60 seconds
+  Altitude: 250 meters
+  Lateral Diversion: 100 meters
 
-Flight 8 - October 7, 2013
-Duration: 78 seconds
-Altitude: 744 meters
+  Flight 8 - October 7, 2013
+  Duration: 78 seconds
+  Altitude: 744 meters
 
 
 ####IV. MODEL PROGRAM####
 
-Flight 1
-Duration: 3.02 seconds
-Altitude: 2.82 meters
+  Flight 1
+  Duration: 3.02 seconds
+  Altitude: 2.82 meters
 
-Flight 2
-Duration: 8.02 seconds
-Altitude: 5.75 meters
+  Flight 2
+  Duration: 8.02 seconds
+  Altitude: 5.75 meters
 
-Flight 3
-Duration: 29.34 seconds
-Altitude: 40.03 meters
+  Flight 3
+  Duration: 29.34 seconds
+  Altitude: 40.03 meters
 
-Flight 4
-Duration: 33.94 seconds
-Altitude: 80.92 meters
+  Flight 4
+  Duration: 33.94 seconds
+  Altitude: 80.92 meters
 
-Flight 5
-Duration: 57.88 seconds
-Altitude: 250.47 meters
+  Flight 5
+  Duration: 57.88 seconds
+  Altitude: 250.47 meters
 
-Flight 6
-Duration: 66.82 seconds
-Altitude: 325.01 meters
+  Flight 6
+  Duration: 66.82 seconds
+  Altitude: 325.01 meters
 
-Flight 7
-Duration: 61.50 seconds
-Altitude: 250.07 meters
-Lateral Diversion: 99.37 meters
-Landing Distance from Launch Position: 0.398 meters
+  Flight 7
+  Duration: 61.50 seconds
+  Altitude: 250.07 meters
+  Lateral Diversion: 99.37 meters
+  Landing Distance from Launch Position: 0.398 meters
 
-Flight 8
-Duration: 78.04 seconds
-Altitude: 744.21 meters
+  Flight 8
+  Duration: 78.04 seconds
+  Altitude: 744.21 meters
 
 ####V. OTHER PROJECTS OF NOTE####
 
