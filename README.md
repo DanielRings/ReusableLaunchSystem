@@ -25,9 +25,9 @@ A model of SpaceX's Grasshopper Program in the Kerbal Space Program, using the k
 
 ####I. INTRODUCTION####
 
-I started playing KSP about two months ago. After an entire night on the demo version, and the following weekend on the full version, I started to look into the available mods. I was looking for an autopilot mod from the beginning because I wanted a less time-consuming way to transfer orbits than to sit at the computer while my nuclear powered engines slowly burned in the same direction for fifteen minutes. I encountered MechJeb, but the automation was too much of a black box. I didn't want an autopilot that did the thinking for me, I wanted to tell the autopilot how to think, and then have it repeat what I told it as many times as I wanted. I then ran into kOS, where the user can write scripts for the autopilot to run. The syntax is meant to be accessible for non-programmers as well, but it is good enough to get the job done.
+I started playing KSP about two months ago. After an entire night on the demo version and the following weekend on the full version, I started to look into the available mods. I was looking for an autopilot mod from the beginning because I wanted a less time-consuming way to transfer orbits than to sit at the computer while my nuclear powered engines slowly burned in the same direction for fifteen minutes. I encountered MechJeb, but the automation was too much of a black box. I didn't want an autopilot that did the thinking for me. I wanted to tell the autopilot how to think and then have it repeat what I told it as many times as I wanted. Then I ran into kOS, where the user can write scripts for the autopilot to run. The syntax is meant to be accessible to non-programmers as well, but it is good enough to get the job done.
 
-About thirty minutes after playing around with kOS, I thought it would be really cool to make a recoverable rocket a la SpaceX's plans. I looked around online to make sure that I wasn't doing anything that had been done before. It turns out there are several other people who have done very impressive similar things, and I make note of some of the similarities and differences of those projects at the end of this.
+About thirty minutes after playing around with kOS, I thought it would be really cool to make a recoverable rocket a la SpaceX's plans. I looked around online to make sure that I wasn't doing anything that had been done before. It turns out there are several other people who have done very impressive similar things and I make note of some of the similarities and differences of those projects at the end of this.
 
 In the end, I decided to replicate SpaceX's Grasshopper program. Kerbal Space Program taught me more about orbital mechanics in half an hour than I had ever learned in any class. (And while I'm not a physics, aero, or astro major, I didn't shy away from learning about that kind of stuff in school.) I was hoping that by modeling the Grasshopper program, I would learn similarly about AI, control theory, and other applied programming concepts.
 
@@ -42,15 +42,15 @@ I certainly did learn a lot and I've marked the progress of my discoveries at ea
 
 * Mods
 	
-	I used a couple mods to model the Grasshopper program, most notably kOS. Installation instructions are found in the links after each mod.
+	I used a couple of mods to model the Grasshopper program, most notably kOS. Installation instructions are found in the links.
 
 	-	[kOS](http://www.curse.com/ksp-mods/kerbal/220265-kos-scriptable-autopilot-system)
 
-      kOS is a scriptable autopilot system. This is the mod that enables autonomous operation of the rocket. A program is loaded into the kOS terminal on a custom ship part and the rocket is entirely controlled via that program once it is executed.
+      kOS is a scriptable autopilot system. This is the mod that enables autonomous operation of the rocket. A program is loaded into the kOS terminal on a custom ship part and the rocket is entirely controlled via that program while it executes.
 
 	-	[KW Rocketry](http://www.curse.com/ksp-mods/kerbal/220894-kw-rocketry)
 
-      This mod adds some parts to KSP. I originally got this one because I was looking for fairings. I ended up not using the fairings, but using the fuel tanks and engines that KW Rocketry includes.
+      This mod adds some parts to KSP. I originally got this because I was looking for fairings. I ended up not using the fairings, but using the fuel tanks and engines that KW Rocketry includes.
 
 	-	Vehicle
 
@@ -111,19 +111,25 @@ I certainly did learn a lot and I've marked the progress of my discoveries at ea
   Duration: 29.34 seconds  
   Altitude: 40.03 meters  
 
-  Notes: It was during this program that I discovered what PID controllers were. This flight was a breeze after I implemented one. Thrust is obviously the output of this PID, and I decided to use altitude as my input. Although I didn't know what it was called at the time, I implemented a linear setpoint ramping on the descent. This led to small, repeated bursts of thrust as the rocket comes down. I didn't want my flights to sound like V-1s, so I looked for a way to smooth out the thrust in the next flight.
+  Notes: It was during this program that I discovered what PID controllers were. This flight was a breeze after I implemented one (along with integral windup prevention). Thrust is obviously the output of this PID, and I decided to use altitude as my input. Although I didn't know what it was called at the time, I implemented a linear setpoint ramping on the descent. This led to small, repeated bursts of thrust as the rocket comes down. I didn't want my flights to sound like V-1s, so I looked for a way to smooth out the thrust in the next flight.
 
   Flight 4  
   Duration: 33.94 seconds  
   Altitude: 80.92 meters  
 
+  Notes: I solved the thrust burst problem in this flight by using a PID controller with velocity as the input instead. I also put much of the PID code into a separate file and called it from the driver (kOS's closest thing to writing functions/methods). Now I could have a steady ascent and descent, and just change the desired velocity.
+
   Flight 5  
   Duration: 57.88 seconds  
   Altitude: 250.47 meters  
 
+  Notes: This flight was one of the most exciting to program. After reading up about them on Wikipedia, I implemented a cascading PID control system. The first one takes in desired altitude, compares it to the current altitude, and outputs a suggested velocity for the ship to get to the desired altitude. The second controller takes in this desired velocity, compares it to the current velocity, and outputs throttle to get to the desired velocity. The further from the desired altitude the ship is, the greater magnitude of desired velocity is output (and the thrust adjusts to this ideal velocity). When the ship's altitude is close to the desired altitude, the desired velocity is very small in magnitude and the ship slowly approaches it's target.
+
   Flight 6  
   Duration: 66.82 seconds  
   Altitude: 325.01 meters  
+
+  Notes: Flight 6 added a few tweaks to the control system. Set point ramping led to steadier ascents and descents. The derivative term is also based on the process variable, rather than the error. This prevents bump during a set point change.
 
   Flight 7  
   Duration: 61.50 seconds  
@@ -131,10 +137,13 @@ I certainly did learn a lot and I've marked the progress of my discoveries at ea
   Lateral Diversion: 99.37 meters  
   Landing Distance from Launch Position: 0.398 meters  
 
+  Notes: This was the most challenging flight to program, due entirely to the lateral diversion. After much trial (and error) with different ways of steering, I settled on a cascaded PID system for desired latitudinal and longitudinal each. Like the altitude PID system, these systems took in position, calculated an ideal latitude velocity or longitude velocity, and output pitch or yaw.This worked the best partly because each system only concerns itself with one dimension. Another method that I initially tried was rolling towards the waypoint and tilting the nose of the rocket towards it. This failed for a number of reasons, some due to KSP/kOS, some due to the complexity, and I'm sure some due to the programmer. This program has a total of 6 PID controllers: 2 each for altitude, latitude, and longitude.
+
   Flight 8  
   Duration: 78.04 seconds  
   Altitude: 744.21 meters  
 
+  Notes: With both altitude and steering mastered, this last flight was one of the easiest to program. It is also hands down the most consistent flight. The duration typically varies by less than a quarter of a second and the altitude by less than a tenth of a meter. The rocket also has a more precise landing than any other program.
 
 ####V. OTHER PROJECTS OF NOTE####
 
