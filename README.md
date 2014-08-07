@@ -1,5 +1,5 @@
 #REUSABLE LAUNCH SYSTEM README#
-A model of SpaceX's Grasshopper Program in the Kerbal Space Program, using the kOS mod.
+A model of SpaceX's Grasshopper Program in Kerbal Space Program, using the kOS mod.
 
 ##CONTENTS##
 
